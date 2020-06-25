@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-init-job2
+spec:
+  template:
+    metadata:
+      name: dbInitJob2
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: "post-install-job"
+          image: postgres:11.7
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "passwd"
+          command:
+            - sh
+            - "-c"
+            - |
+              sleep 30 && {{ printf "psql postgres://%s:%s@%s/%s" .Values.externalPostgresql.postgresqlUsername .Values.externalPostgresql.postgresqlPassword (include "postgresql.fullname" .) .Values.externalPostgresql.postgresqlDatabase }} <<'EOF'
+
+                drop table system_user;
+
+                drop SEQUENCE user_seq;
+
+              EOF
+  backoffLimit: 0
