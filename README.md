@@ -1,6 +1,7 @@
 # otus-cache-kuber
 
 Application uses read through cache:
+![Architecture](https://github.com/klimenkoOleg/otus-cache-kuber/blob/master/OTUS%20Architect%20Course.png?raw=true)
 
 
 
