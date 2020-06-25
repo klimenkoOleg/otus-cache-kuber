@@ -7,8 +7,13 @@ Application uses read through cache:
 
 # Installation
 
-1. Use install.sh to install application to Kubernetes (uses Helm charts)
-2. Use uninstall.sh to uninstall the app from Kubernetes.
+1. Use any namespace, for example products-namespace:
+kubectl create namespace products-namespace
+kubectl config use-context products-namespace
+
+2. Use install.sh to install application to Kubernetes (uses Helm charts)
+
+3. Use uninstall.sh to uninstall the app from Kubernetes.
 
 
 # Dependencies / other projects:
